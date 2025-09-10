@@ -1,38 +1,39 @@
-# API_Restful
-Diseñar una API RESTFUL que permita gestionar el progreso de los usuarios en distintos retos de salud, tomando como base los datos de actividad física
+# Health RESTFUL API
 
-## Proceso de instalación
+Design a RESTFUL API that allows managing the progress of users in different health challenges, based on physical activity data.
 
-<!--
+## Installation Process
+
+``` bash
 npm init -y
 npm install express mongoose bcrypt
- -->
-
-Para ejecutar la API sigue los siguientes pasos:
-
-Instala MongoDB y crea/usa la base de datos correspondiente
-
 ```
+
+To run the API, follow these steps:
+
+Install MongoDB and create/use the corresponding database.
+
+``` bash
 mongosh
-use retos_salud
+use health_challenges
 ```
 
-Clona el repositorio
+Clone the repository.
 
-```
+``` bash
 git clone https://github.com/AlejandroMoc/API_Restful
 ```
 
-Instala NodeJS y Express e inicia la API
+Install NodeJS and Express, and start the API.
 
-```
-# Navegar a la carpeta clonada
+``` bash
+# Navigate to the cloned folder
 cd API_Restful
 
-# Iniciar la API
+# Start the API
 npm run dev
 ```
 
-## Uso de la API
+## API Usage
 
-La documentación sobre los endpoints puede encontrarse [aquí](doc/API.md).
+Documentation about the endpoints can be found in [API.md](doc/API.md).

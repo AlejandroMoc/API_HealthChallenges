@@ -1,76 +1,79 @@
-# Probar la API
+# Testing the API
 
-Para probar la API, es posible usar PostMan de la siguiente manera.
+To test the API, you can use Postman as follows.
 
-## Usuarios
+## Users
 
-### Registro de usuarios
+### User Registration
 
-Para probar el registro de usuarios, colocar los siguientes datos:
+To test user registration, enter the following data:
 
 ```
-# Seleccionar POST y colocar URL
+# Select POST and enter URL
 http://localhost:3000/api/users/signup
 
-# En Body, seleccionar Raw y pegar el contenido.
+# In Body, select Raw and paste the content.
 {
     "name": "Pedro Equis",
     "email": "pedrox@sitio.com",
     "password": "PedroEquis654"
 }
 ```
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-## Eliminación de usuarios
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-Para eliminar un usuario, se necesita el correo y contraseña.
+## User Deletion
+
+To delete a user, you need the email and password.
 
 ```
-# Seleccionar DELETE y colocar URL.
+# Select DELETE and enter URL.
 http://localhost:3000/api/users/delete/
 
-# En Body, seleccionar Raw como parámetros. Pegar el siguiente contenido.
+# In Body, select Raw as parameters. Paste the following content.
 
 {
     "email": "pedrox@sitio.com",
     "password": "PedroEquis654"
 }
 ```
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-### Consultar retos de un usuario
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-Para consultar los retos de un usuario, se necesita el ID del usuario.
+### Querying a User's Challenges
+
+To query a user's challenges, you need the user's ID.
 
 ```
-# Selecciona GET y coloca la URL
+# Select GET and enter the URL
 http://localhost:3000/api/users/:userId/challenges
 
-# Por ejemplo, si el ID del usuario es 688c21220143a333e8f61366
+# For example, if the user ID is 688c21220143a333e8f61366
 http://localhost:3000/api/users/688c21220143a333e8f61366/challenges
 ```
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-## Retos
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-### Registro de retos
+## Challenges
 
- - El nombre y descripción del reto se definen por "name" y "description".
- - La cantidad de días que dura un reto se define por "numberDays".
- - El tipo de reto, "goalType", debe ser "daily" o "accumulative".
- - El número que se debe alcanzar en el reto se define por "goalNumber".
+### Challenge Registration
+
+- The challenge name and description are defined by "name" and "description".
+- The duration of a challenge in days is defined by "numberDays".
+- The challenge type, "goalType", must be "daily" or "accumulative".
+- The number to be reached in the challenge is defined by "goalNumber".
 
 ```
-# Seleccionar POST y colocar URL
+# Select POST and enter URL
 http://localhost:3000/api/challenges/create
 
-# En Body, selecciona Raw y pegar el contenido
+# In Body, select Raw and paste the content
 {
-    "name": "Caminar más",
-    "description" : "Dar 5000 pasos diarios por una semana.",
+    "name": "Walk More",
+    "description" : "Take 5000 steps daily for a week.",
 
     "type": "steps",
     "numberDays": 7,
@@ -80,56 +83,57 @@ http://localhost:3000/api/challenges/create
 }
 ```
 
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-### Eliminar un reto
+### Delete a Challenge
 
-- ":id" representa el ID del reto a eliminar.
+- ":id" represents the ID of the challenge to be deleted.
 
 ```
-# Selecciona DELETE y coloca la URL. En Body, selecciona None
+# Select DELETE and enter the URL. In Body, select None
 http://localhost:3000/api/challenges/delete/:id
 
-# Por ejemplo, si el ID es 688c21220143a333e8f61366
+# For example, if the ID is 688c21220143a333e8f61366
 http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
 ```
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
 
-### Leaderboard de un reto
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-Obtiene el ranking de usuarios para un reto específico ordenado por progreso.
+### Challenge Leaderboard
 
-- ":challengeId" se refiere al ID del reto
+Retrieves the user ranking for a specific challenge, ordered by progress.
+
+- ":challengeId" refers to the ID of the challenge
 
 ```
-# Selecciona GET y coloca la URL
+# Select GET and enter the URL
 http://localhost:3000/api/challenges/:challengeId/leaderboard
 
-# Ejemplo con ID 688c21220143a333e8f61366
+# Example with ID 688c21220143a333e8f61366
 http://localhost:3000/api/challenges/688c21220143a333e8f61366/leaderboard
 ```
 
-Presionar en el botón "Send".
-Ahora se debería imprimir un mensaje de éxito como respuesta de PostMan.
+Press the "Send" button.
+You should now see a success message as a response from Postman.
 
-## Actividades
+## Activities
 
-### Registrar una actividad para un usuario
+### Register an Activity for a User
 
- - El "userId" es el ID del usuario.
- - La fecha registrada para la actividad se representa con "date".
- - "Value" y "type" representan el valor y tipo de la actividad que se registra.
- - "Type" solo puede ser "steps", "sleep" o "cardio_points".
+- The "userId" is the ID of the user.
+- The date recorded for the activity is represented by "date".
+- "Value" and "type" represent the value and type of the activity being recorded.
+- "Type" can only be "steps", "sleep", or "cardio_points".
 
 ```
-# Seleccionar POST y colocar URL
+# Select POST and enter URL
 http://localhost:3000/api/activities/register
 
-# En Body, seleccionar Raw y pegar el contenido
+# In Body, select Raw and paste the content
 {
-    "userId": "ID_DEL_USUARIO",
+    "userId": "USER_ID",
     "date": "2025-07-31",
     "type": "steps",
     "value": 7500
