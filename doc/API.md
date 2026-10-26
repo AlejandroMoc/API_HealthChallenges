@@ -1,61 +1,50 @@
 # Testing the API
 
-To test the API, you can use Postman as follows.
+To test the API, you can use `curl` from your terminal. Make sure the API is running (`npm run dev`) before running these commands.
 
 ## Users
 
 ### User Registration
 
-To test user registration, enter the following data:
+To test user registration, send a POST request with the following data:
 
-```
-# Select POST and enter URL
-http://localhost:3000/api/users/signup
-
-# In Body, select Raw and paste the content.
-{
+```bash
+curl -X POST http://localhost:3000/api/users/signup \
+  -H "Content-Type: application/json" \
+  -d '{
     "name": "Pedro Equis",
     "email": "pedrox@sitio.com",
     "password": "PedroEquis654"
-}
+  }'
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ## User Deletion
 
-To delete a user, you need the email and password.
+To delete a user, you need the email and password:
 
-```
-# Select DELETE and enter URL.
-http://localhost:3000/api/users/delete/
-
-# In Body, select Raw as parameters. Paste the following content.
-
-{
+```bash
+curl -X DELETE http://localhost:3000/api/users/delete/ \
+  -H "Content-Type: application/json" \
+  -d '{
     "email": "pedrox@sitio.com",
     "password": "PedroEquis654"
-}
+  }'
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ### Querying a User's Challenges
 
-To query a user's challenges, you need the user's ID.
+To query a user's challenges, you need the user's ID:
 
-```
-# Select GET and enter the URL
-http://localhost:3000/api/users/:userId/challenges
-
+```bash
 # For example, if the user ID is 688c21220143a333e8f61366
-http://localhost:3000/api/users/688c21220143a333e8f61366/challenges
+curl http://localhost:3000/api/users/688c21220143a333e8f61366/challenges
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ## Challenges
 
@@ -66,40 +55,31 @@ You should now see a success message as a response from Postman.
 - The challenge type, "goalType", must be "daily" or "accumulative".
 - The number to be reached in the challenge is defined by "goalNumber".
 
-```
-# Select POST and enter URL
-http://localhost:3000/api/challenges/create
-
-# In Body, select Raw and paste the content
-{
+```bash
+curl -X POST http://localhost:3000/api/challenges/create \
+  -H "Content-Type: application/json" \
+  -d '{
     "name": "Walk More",
-    "description" : "Take 5000 steps daily for a week.",
-
+    "description": "Take 5000 steps daily for a week.",
     "type": "steps",
     "numberDays": 7,
-
     "goalType": "daily",
     "goalNumber": 5000
-}
+  }'
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ### Delete a Challenge
 
 - ":id" represents the ID of the challenge to be deleted.
 
-```
-# Select DELETE and enter the URL. In Body, select None
-http://localhost:3000/api/challenges/delete/:id
-
+```bash
 # For example, if the ID is 688c21220143a333e8f61366
-http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
+curl -X DELETE http://localhost:3000/api/challenges/delete/688c21220143a333e8f61366
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ### Challenge Leaderboard
 
@@ -107,16 +87,12 @@ Retrieves the user ranking for a specific challenge, ordered by progress.
 
 - ":challengeId" refers to the ID of the challenge
 
-```
-# Select GET and enter the URL
-http://localhost:3000/api/challenges/:challengeId/leaderboard
-
+```bash
 # Example with ID 688c21220143a333e8f61366
-http://localhost:3000/api/challenges/688c21220143a333e8f61366/leaderboard
+curl http://localhost:3000/api/challenges/688c21220143a333e8f61366/leaderboard
 ```
 
-Press the "Send" button.
-You should now see a success message as a response from Postman.
+You should now see a success message as a response.
 
 ## Activities
 
@@ -127,16 +103,15 @@ You should now see a success message as a response from Postman.
 - "Value" and "type" represent the value and type of the activity being recorded.
 - "Type" can only be "steps", "sleep", or "cardio_points".
 
-```
-# Select POST and enter URL
-http://localhost:3000/api/activities/register
-
-# In Body, select Raw and paste the content
-{
+```bash
+curl -X POST http://localhost:3000/api/activities/register \
+  -H "Content-Type: application/json" \
+  -d '{
     "userId": "USER_ID",
     "date": "2025-07-31",
     "type": "steps",
     "value": 7500
-    
-}
+  }'
 ```
+
+You should now see a success message as a response.
